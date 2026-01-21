@@ -104,3 +104,54 @@ body{
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
 }
+.loginpage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.logininputs{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.logininput{
+  display: flex;  
+  justify-content: space-between;
+  font-size: xx-large;
+  font-weight: 600;
+}
+.logininput input{
+  height: 35px;
+  width: 60%;
+  font-size: xx-large;
+  padding: 10px;
+  border-radius: 25px;
+  border: 2px solid black;
+}
+.logininput input::placeholder{
+  font-size: x-large;
+  padding-left: 10px;
+}
+.loginpage-heading{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 100px;
+} 
+.loginbtn{
+  padding: 15px 50px;
+  font-size: x-large;
+  background-color: black;
+  color: #d7faff;
+  border: none;
+  border-radius: 35px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.loginbtn:hover{
+  transform: scale(1.1);
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+} 
