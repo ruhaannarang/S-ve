@@ -12,8 +12,8 @@ const Home = () => {
       </div>
       <div className='fpquote'>Being yourself is your biggest social strength.</div>
       <div className="authButtons">
-        <a href="" className="btnauth">Sign in</a>
-        <a href="" className="btnauth">Login</a>
+        <a href="/signup" className="btnauth">Sign Up</a>
+        <a href="/login" className="btnauth">Login</a>
       </div>
      </body>
     
