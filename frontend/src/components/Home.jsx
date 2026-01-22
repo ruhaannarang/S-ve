@@ -3,7 +3,7 @@ import front_page_photo from "../assets/front_page_photo.png";
 const Home = () => {
   return (
     
-      <body>
+      <>
       <div className="front_page_Image">
         <img src= {front_page_photo} alt="" />
       </div>
@@ -15,7 +15,7 @@ const Home = () => {
         <a href="/signup" className="btnauth">Sign Up</a>
         <a href="/login" className="btnauth">Login</a>
       </div>
-     </body>
+     </>
     
   )
 }
