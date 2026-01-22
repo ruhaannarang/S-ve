@@ -9,7 +9,7 @@ dotenv.config();
 const User = require("../models/User");
 // app.use(cors());
 const JWT_SECRET = process.env.JWT_SECRET;
-
+var fetchuser = require("../middleware/fetchuser");
 //creating user
 
 router.post("/createuser", async (req, res) => {
@@ -62,9 +62,9 @@ router.post("/login", async (req, res) => {
 
 //getuser details
 
-router.post("/getuser", async (req, res) => {
-  const { username } = req.body;
-  let user = await User.findOne({ username: username }).select("-password");
+router.get("/getuser", fetchuser, async (req, res) => {
+  const userId = req.user.id;
+  let user = await User.findOne({ _id: userId }).select("-password");
   if (!user) {
     return res
       .status(400)
