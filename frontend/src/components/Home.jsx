@@ -3,6 +3,9 @@ import { useAuth } from "../context/AuthContext";
 import front_page_photo from "../assets/front_page_photo.png";
 const Home = () => {
   const { user, loading } = useAuth();
+  if(!loading && user){
+    window.location.href="/feed";
+  }
   console.log("User in Home component:", user?.user?.username);
   console.log("Loading state in Home component:", loading);
   return (

@@ -1,53 +1,51 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import Nav from "./Nav";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Feed = () => {
+    const [posts, setPosts] = useState([]); 
+    let Navigate = useNavigate();
     const addpost = () => {
-        Navigate("/addpost");
+      Navigate("/addpost");
     };
+    useEffect(() => {
+      const fetchPosts = async () => {
+        try {
+          const response = await fetch("http://localhost:3000/getposts");
+          const data = await response.json();
+          setPosts(data);
+        } catch (error) {
+          console.error("Error fetching posts:", error);
+        }
+      };
+      fetchPosts();
+    }, []);
   return (
     <div>
-      
-        <Nav />
-      
+      <Nav />
+
       <div className="feedpage">Feed Page</div>
       <div className="feedsec">
         <div className="feed">
-            
-          <div className="post">
+         {
+            posts.map((post) => (
+                 <div className="post">
             <div className="image">
               <img
-                src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+                src={post.image}
                 alt=""
               />
             </div>
-             <div className="postopts">
+            <div className="postopts">
               <div className="postinfo">
-                <h3>Username</h3>
-                <p>This is a sample post content. Hello world!</p>
+                <h3>{post.username}</h3>
+                <p>{post.caption}</p>
               </div>
               <div className="like">🤍</div>
             </div>
-          </div>
-
-          <div className="post">
-            <div className="image">
-              <img
-                src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
-                alt=""
-              />
-            </div>
-             <div className="postopts">
-              <div className="postinfo">
-                <h3>Username</h3>
-                <p>This is a sample post content. Hello world  Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi fugiat, quidem, voluptates iure, id aliquid temporibus molestias rerum consequatur modi vitae illo.!</p>
-              </div>
-              <div className="like">🤍</div>
-            </div>
-          </div>
-
+          </div>))
+         }
+          
         </div>
-
       </div>
       <div className="addpostbtn" onClick={addpost}>
         Add Post
