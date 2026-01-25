@@ -5,9 +5,12 @@ const fetchuser = (req, res, next) => {
     if(!token){
         res.status(401).send({error:"Please authenticate using a valid token"});
     }
-    console.log(token);
+    // console.log(token);
     const data=jwt.verify(token,process.env.JWT_SECRET);
     req.user=data.user;
+    // console.log("REQ.USER:", req.user);
+
+
     next();
 }
 module.exports=fetchuser;

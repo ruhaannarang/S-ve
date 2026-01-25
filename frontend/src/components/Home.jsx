@@ -1,6 +1,10 @@
 import React from 'react'
+import { useAuth } from "../context/AuthContext";
 import front_page_photo from "../assets/front_page_photo.png";
 const Home = () => {
+  const { user, loading } = useAuth();
+  console.log("User in Home component:", user);
+  console.log("Loading state in Home component:", loading);
   return (
     
       <>

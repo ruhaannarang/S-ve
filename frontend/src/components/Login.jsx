@@ -1,4 +1,4 @@
-import React, { useState ,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -7,32 +7,33 @@ const Login = () => {
     password: "",
   });
   let Navigate = useNavigate();
-
+  console.log("TOKEN:", localStorage.getItem("token"));
 
   useEffect(() => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    fetch("http://localhost:3000/api/auth/getuser", {
-      method: "GET",
-      headers: {
-        "auth-token": localStorage.getItem("authtoken"),
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("User data:", data);
-        // Handle successful user fetch
+    const token = localStorage.getItem("token");
+    if (token) {
+      fetch("http://localhost:3000/api/auth/getuser", {
+        method: "GET",
+        headers: {
+          "auth-token": localStorage.getItem("authtoken"),
+        },
+       
       })
-      .catch((error) => {
-        console.error("Failed to fetch user:", error);
-        // Handle user fetch failure
-      });
-  } else {
-    Navigate("/login");
-  }
-}, []);
-
-
+        .then((response) => response.json())
+        .then((data) => {
+          JSON.stringify(data)
+          // console.log("User data:", data);
+          console.log(data.user.username);
+          Navigate("/home");
+        })
+        .catch((error) => {
+          console.error("Failed to fetch user:", error);
+         
+        });
+    } else {
+      Navigate("/login");
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,11 +51,11 @@ const Login = () => {
         const token = data.authtoken;
         console.log(token);
         localStorage.setItem("token", token);
-        // Handle successful login (e.g., redirect, store token)
+        Navigate("/home");
       })
       .catch((error) => {
         console.error("Login failed:", error);
-        // Handle login failure
+        Navigate("/login");
       });
   };
   const onChange = (e) => {

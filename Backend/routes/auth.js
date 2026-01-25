@@ -56,7 +56,9 @@ router.post("/login", async (req, res) => {
       id: user.id,
     },
   };
-  const authtoken = jwt.sign(data, JWT_SECRET);
+
+
+  const authtoken = jwt.sign(data,JWT_SECRET);
   res.json({ success: true, authtoken });
 });
 
