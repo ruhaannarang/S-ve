@@ -7,6 +7,9 @@ const Nav = () => {
     const email = user?.user?.email;
   return (
     <div>
+        <div className="siteName">
+            S+ve | Social positive
+        </div>
       <div className="nav">
         <p>👤{username}</p>
         <p>✉️ {email}</p>

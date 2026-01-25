@@ -16,9 +16,12 @@ const Feed = () => {
                 alt=""
               />
             </div>
-            <div className="postinfo">
-              <h3>Username</h3>
-              <p>This is a sample post content. Hello world!</p>
+             <div className="postopts">
+              <div className="postinfo">
+                <h3>Username</h3>
+                <p>This is a sample post content. Hello world!</p>
+              </div>
+              <div className="like">🤍</div>
             </div>
           </div>
 
@@ -29,11 +32,15 @@ const Feed = () => {
                 alt=""
               />
             </div>
-            <div className="postinfo">
-              <h3>Username</h3>
-              <p>This is a sample post content. Hello world!</p>
+             <div className="postopts">
+              <div className="postinfo">
+                <h3>Username</h3>
+                <p>This is a sample post content. Hello world  Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi fugiat, quidem, voluptates iure, id aliquid temporibus molestias rerum consequatur modi vitae illo.!</p>
+              </div>
+              <div className="like">🤍</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
