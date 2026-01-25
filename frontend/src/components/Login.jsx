@@ -26,7 +26,7 @@ const Login = () => {
           if (data && data.success && data.user) {
             console.log("User data:", data.user);
             console.log(data.user.username)
-            Navigate("/home");
+            Navigate("/feed");
           } else {
             console.error("No user returned from getuser:", data);
             localStorage.removeItem("token");
@@ -57,7 +57,7 @@ const Login = () => {
         if (data && data.authtoken) {
           const token = data.authtoken;
           localStorage.setItem("token", token);
-          Navigate("/home");
+          Navigate("/feed");
         } else {
           console.error("Login failed or no token returned:", data);
           Navigate("/login");

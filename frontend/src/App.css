@@ -366,7 +366,7 @@ body {
   width: 100vw;
 
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
   .nav {
     flex-direction: column;
     gap: 10px;
