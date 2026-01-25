@@ -188,12 +188,16 @@ body {
   /* opacity: 0.9; */
   font-size: x-large;
 }
-.siteName{
+.siteNamefeedpage{
   background-color: black;
   color: #d7faff;
   font-size: xx-large;
   font-weight: 700;
   padding: 10px 0;
+  position: sticky;
+  text-align: center;
+  top: 0;
+  z-index: 100;
 }
 
 .feedpage {
@@ -299,6 +303,24 @@ body {
 }
 
 .like:hover {
+  transform: scale(1.1);
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.addpostbtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 20px 30px;
+  background-color: black;
+  color: #d7faff;
+  font-size: x-large;
+  border-radius: 35px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 100;
+}
+.addpostbtn:hover {
   transform: scale(1.1);
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;

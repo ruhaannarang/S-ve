@@ -1,14 +1,19 @@
 import React from "react";
 import Nav from "./Nav";
+import { Navigate } from "react-router-dom";
 const Feed = () => {
+    const addpost = () => {
+        Navigate("/addpost");
+    };
   return (
     <div>
-      <div className="navbox">
+      
         <Nav />
-      </div>
+      
       <div className="feedpage">Feed Page</div>
       <div className="feedsec">
         <div className="feed">
+            
           <div className="post">
             <div className="image">
               <img
@@ -42,6 +47,10 @@ const Feed = () => {
           </div>
 
         </div>
+
+      </div>
+      <div className="addpostbtn" onClick={addpost}>
+        Add Post
       </div>
     </div>
   );
