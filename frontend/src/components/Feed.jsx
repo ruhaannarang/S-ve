@@ -7,6 +7,18 @@ const Feed = () => {
     const addpost = () => {
       Navigate("/addpost");
     };
+    const handleLike = (e) => {
+      const likeBtn = e.target;
+      const isLiked = likeBtn.textContent === "❤️";
+      if (isLiked) {
+        likeBtn.textContent = "🤍";
+        localStorage.removeItem("liked");
+        return;
+      }
+      likeBtn.textContent = "❤️";
+      localStorage.setItem("liked", "true");
+
+    }
     useEffect(() => {
       const fetchPosts = async () => {
         try {
@@ -40,7 +52,7 @@ const Feed = () => {
                 <h3>{post.username}</h3>
                 <p>{post.caption}</p>
               </div>
-              <div className="like">🤍</div>
+              <div onClick={handleLike} className="like">🤍</div>
             </div>
           </div>))
          }

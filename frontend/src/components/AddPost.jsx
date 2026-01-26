@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Nav from "./Nav";
-
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 const AddPost = () => {
   const { user, loading } = useAuth();
@@ -12,7 +12,8 @@ const AddPost = () => {
     caption: "",
     image: null,
   });
-
+  
+  let Navigate = useNavigate();
   //   const email = user?.user?.email;
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -36,10 +37,10 @@ const AddPost = () => {
     console.log(imgUrl);
     setCredentials({ ...credentials, image: imgUrl.secure_url });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(credentials);
-    const res = fetch("http://localhost:3000/addpost", {
+    const res = await fetch("http://localhost:3000/addpost", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,6 +52,7 @@ const AddPost = () => {
       }),
     });
     console.log(res);
+    await Navigate("/feed");
   };
   return (
     <div>
