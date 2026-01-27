@@ -211,13 +211,16 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 30px;
-  margin-top: 20px;
+  /* padding-top: 0px; */
+  padding: 20px;
   font-size: xx-large;
   font-weight: 600;
-  color: rgb(0, 0, 0);
+  color: rgb(215, 250, 255);
+  background-color: rgb(21, 25, 25);
 }
 
 .feedsec {
+  background-color: rgb(21, 25, 25);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -235,7 +238,7 @@ body {
   flex-direction: column;
   align-items: center;
   /* height: 100%; */
-  background-color: #00000030;
+  background-color: rgba(215, 250, 255, 0.308);
 }
 
 .post {
@@ -313,6 +316,89 @@ body {
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
 }
+.chatapp{
+  background-color: rgb(21, 25, 25);
+  margin-bottom:30px;
+  color: white;
+}
+.chatappbody{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(21, 25, 25);
+}
+.chatheading{
+  text-align: center;
+  font-size: 2rem;
+  padding: 10px 0;
+  color: white;
+  border-bottom: 2px solid #f83dba;
+}
+.user-message{
+  font-weight: 700;
+  font-size: medium;
+  color: #3a47fa;
+}
+.bot-message{
+  font-weight: 700;
+  font-size: medium;
+  color: #f83dba;
+}
+.chatpage{
+  height: calc();
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  background-color: rgb(21, 25, 25);
+}
+.line{
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+}
+#input-prompt{
+  width: 80%;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 2px solid black;
+  background-color: black;
+  color: #d7faff;
+  font-size: large;
+}
+#chatsendbtn{
+  padding: 10px 20px;
+  font-size: large;
+  background-color: black;
+  color: #d7faff;
+  border: none;
+  border-radius: 25px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.message-box{
+  width: 90vw;
+  height: 60vh;
+  border: 2px solid white;
+  border-radius: 15px;
+  padding: 10px 20px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  scrollbar-width: none;
+}
+.inputform{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(21, 25, 25);
+  padding: 10px 0;
+  margin-bottom:30px;
+  display: flex;
+  gap: 20px;
+}
 .addpostbtn {
   position: fixed;
   bottom: 120px;
@@ -325,6 +411,7 @@ body {
   font-weight: 700;
   cursor: pointer;
   z-index: 100;
+  border: 3px solid #3a47fa;
 }
 .addpostbtn:hover {
   transform: scale(1.1);
@@ -384,6 +471,7 @@ body {
   font-weight: 700;
   cursor: pointer;
   z-index: 100;
+  border: 3px solid #f83dba;
 }
 .chatbotbtn:hover {
   transform: scale(1.1);

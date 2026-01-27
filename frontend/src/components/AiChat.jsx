@@ -39,46 +39,49 @@ const AiChat = () => {
     }),
   });
   return (
-    <div>
+    <div className="chatappbody">
       <Nav />
-      <span>
-        <h2 className="chatheading">Chat with S+ AI</h2>
-      </span>
-      <div className="chatapp">
-        <div className="message-box">
-          {messages.map((message) => (
-            <div key={message.id}>
-              <div>{message.role === "user" ? username : "ChatBot"}</div>
-              <p>
-                {message.parts.map((part, index) =>
-                  part.type === "text" ? (
-                    <span key={index}>{part.text}</span>
-                  ) : null,
-                )}
-              </p>
-            </div>
-          ))}
+      <div className="line"></div>
+      <div className="chatpage">
+        <span>
+          <h2 className="chatheading">Chat with S+ AI</h2>
+        </span>
+        <div className="chatapp">
+          <div className="message-box">
+            {messages.map((message) => (
+              <div  key={message.id}>
+                <div className={message.role === "user" ? "user-message" : "bot-message"}>{message.role === "user" ? username : "ChatBot"}</div>
+                <p>
+                  {message.parts.map((part, index) =>
+                    part.type === "text" ? (
+                      <span key={index}>{part.text}</span>
+                    ) : null,
+                  )}
+                </p>
+              </div>
+            ))}
+          </div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              sendMessage({
+                text: e.currentTarget["input-prompt"].value,
+                role: "user",
+              });
+            }}
+            className="inputform"
+          >
+            <input type="text" name="message" id="input-prompt" />
+            <button id="chatsendbtn" type="submit" disabled={status === "streaming"}>
+              send
+            </button>
+          </form>
+          {error && (
+            <p className="errorbox">
+              Error occured.Please check browser console for more info
+            </p>
+          )}
         </div>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            sendMessage({
-              text: e.currentTarget["input-prompt"].value,
-              role: "user",
-            });
-          }}
-          className="inputform"
-        >
-          <input type="text" name="message" id="input-prompt" />
-          <button type="submit" disabled={status === "streaming"}>
-            send
-          </button>
-        </form>
-        {error && (
-          <p className="errorbox">
-            Error occured.Please check browser console for more info
-          </p>
-        )}
       </div>
     </div>
   );

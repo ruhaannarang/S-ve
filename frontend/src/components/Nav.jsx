@@ -13,6 +13,7 @@ const Nav = () => {
         <p>👤{username}</p>
         <p>✉️ {email}</p>
       </div>
+      <div className="line"></div>
     </div>
   );
 };
