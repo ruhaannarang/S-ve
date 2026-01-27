@@ -315,7 +315,7 @@ body {
 }
 .addpostbtn {
   position: fixed;
-  bottom: 30px;
+  bottom: 120px;
   right: 30px;
   padding: 20px 30px;
   background-color: black;
@@ -370,6 +370,25 @@ body {
 .front_page_Image img{
   width: 100vw;
 
+}
+
+.chatbotbtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 20px 30px;
+  background-color: black;
+  color: #d7faff;
+  font-size: x-large;
+  border-radius: 35px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 100;
+}
+.chatbotbtn:hover {
+  transform: scale(1.1);
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
 }
 @media screen and (max-width: 1000px) {
   .nav {

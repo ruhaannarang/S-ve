@@ -5,6 +5,7 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Feed from './components/Feed';
 import AddPost from './components/AddPost';
+import AiChat from './components/AiChat';
 function App() {
   const router=createBrowserRouter([
     {path:"/",
@@ -25,6 +26,9 @@ function App() {
     {path:"/addpost",
       element:<><AddPost/></>
     },
+    {path:"/chat",
+      element:<><AiChat/></>
+    }
   ])
 
   return (
