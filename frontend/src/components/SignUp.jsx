@@ -17,7 +17,7 @@ const SignUp = () => {
     console.log(json);
     if(json.success){
       localStorage.setItem('token',json.authtoken);
-      Navigate('/home');
+      Navigate('/feed');
     }
   }
   const onChange=(e)=>{

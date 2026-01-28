@@ -49,8 +49,14 @@ const AiChat = () => {
         <div className="chatapp">
           <div className="message-box">
             {messages.map((message) => (
-              <div  key={message.id}>
-                <div className={message.role === "user" ? "user-message" : "bot-message"}>{message.role === "user" ? username : "ChatBot"}</div>
+              <div key={message.id}>
+                <div
+                  className={
+                    message.role === "user" ? "user-message" : "bot-message"
+                  }
+                >
+                  {message.role === "user" ? username : "ChatBot"}
+                </div>
                 <p>
                   {message.parts.map((part, index) =>
                     part.type === "text" ? (
@@ -72,7 +78,11 @@ const AiChat = () => {
             className="inputform"
           >
             <input type="text" name="message" id="input-prompt" />
-            <button id="chatsendbtn" type="submit" disabled={status === "streaming"}>
+            <button
+              id="chatsendbtn"
+              type="submit"
+              disabled={status === "streaming"}
+            >
               send
             </button>
           </form>
