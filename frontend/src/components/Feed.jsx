@@ -38,7 +38,7 @@ const Feed = () => {
     <div>
       <Nav />
 
-      <div className="feedpage">Feed Page</div>
+      <div className="feedpage">Feed</div>
       <div className="feedsec">
         <div className="feed">
           {posts.map((post) => (
@@ -64,6 +64,9 @@ const Feed = () => {
       </div>
       <div className="addpostbtn" onClick={addpost}>
         Add Post
+      </div>
+      <div className="msgbtn" onClick={() => Navigate("/message")}>
+        Direct Message
       </div>
     </div>
   );

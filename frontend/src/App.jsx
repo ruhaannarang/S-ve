@@ -1,6 +1,7 @@
 import './App.css'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom';
 import Home from './components/Home';
+import Message from './components/message';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Feed from './components/Feed';
@@ -28,6 +29,9 @@ function App() {
     },
     {path:"/chat",
       element:<><AiChat/></>
+    },
+    {path:"/message",
+      element:<><Message/></>
     }
   ])
 

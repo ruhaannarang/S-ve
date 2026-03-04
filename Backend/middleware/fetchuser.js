@@ -8,7 +8,7 @@ const fetchuser = (req, res, next) => {
     // console.log(token);
     const data=jwt.verify(token,process.env.JWT_SECRET);
     req.user=data.user;
-    // console.log("REQ.USER:", req.user);
+    // console.log("data", req.user);
 
 
     next();
