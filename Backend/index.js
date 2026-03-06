@@ -2,23 +2,62 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const http = require("http");
+const { Server } = require("socket.io");
+
 const connectDB = require("./db");
-const generateText = require("ai");
-const { streamText, convertToModelMessages } = require("ai");
-const { google } = require("@ai-sdk/google");
 const Posts = require("./models/posts");
 const Message = require("./models/Message");
 const mongoose = require("mongoose");
 const Chat = require("./models/Chat");
-const router = require("./routes/auth");
+
 const app = express();
-connectDB();
 dotenv.config();
-app.use(cors());
-const port = 3000;
+
+connectDB();
+
+app.use(cors({
+  origin: "http://localhost:5173",
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 
 app.use(express.json());
+
 app.use("/api/auth", require("./routes/auth"));
+
+/* ---------------- HTTP SERVER ---------------- */
+
+const server = http.createServer(app);
+
+/* ---------------- SOCKET SERVER ---------------- */
+
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"]
+  }
+});
+
+io.on("connection", (socket) => {
+
+  console.log("User connected:", socket.id);
+
+  socket.on("user-joined", (username) => {
+    console.log(`${username} joined the chat`);
+    socket.broadcast.emit("user-joined", username);
+  });
+
+  socket.on("send-message", (message) => {
+    console.log("Message received:", message);
+    socket.broadcast.emit("receive-message", message);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
+  });
+
+});
 
 app.post("/addpost", (req, res) => {
   console.log(req.body);
@@ -140,7 +179,7 @@ app.post("/new-chat", async (req, res) => {
 
   res.json(chat);
 });
-
-app.listen(port, () => {
+const port = 3000;
+server.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
