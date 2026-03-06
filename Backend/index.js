@@ -44,17 +44,25 @@ io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
   socket.on("user-joined", (username) => {
+
+    socket.username = username; // store username in socket
+
     console.log(`${username} joined the chat`);
+
     socket.broadcast.emit("user-joined", username);
+
   });
 
   socket.on("send-message", (message) => {
-    console.log("Message received:", message);
-    socket.broadcast.emit("receive-message", message);
+    io.emit("receive-message", message);
   });
 
   socket.on("disconnect", () => {
-    console.log("User disconnected");
+
+    if (socket.username) {
+      io.emit("user-left", socket.username);
+    }
+
   });
 
 });

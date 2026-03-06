@@ -19,7 +19,19 @@ const Message = () => {
     socket.on("receive-message", (message) => {
       setMessages((prev) => [...prev, message]);
     });
+    // socket.on("user-left", (user) => {
+    //   addSystemMessage(`${user} left the chat`);
+    // });
+    socket.on("user-joined", (user) => {
+      const joinMessage = {
+        id: Date.now(),
+        sender: "system",
+        content: `${user} joined the chat`,
+        createdAt: new Date(),
+      };
 
+      setMessages((prev) => [...prev, joinMessage]);
+    });
     return () => {
       socket.off("receive-message");
     };
@@ -56,18 +68,30 @@ const Message = () => {
             <div style={styles.empty}>No messages yet — say hi 👋</div>
           )}
 
-          {messages.map((m) => (
-            <div
-              key={m.id}
-              style={m.sender === username ? styles.msgRowSelf : styles.msgRow}
-            >
-              <div style={styles.msgAuthor}>{m.sender}</div>
-              <div style={styles.msgBubble}>{m.content}</div>
-              <div style={styles.msgTime}>
-                {new Date(m.createdAt).toLocaleTimeString()}
+          {messages.map((m) => {
+            if (m.sender === "system") {
+              return (
+                <div key={m.id} style={styles.systemMsg}>
+                  {m.content}
+                </div>
+              );
+            }
+
+            return (
+              <div
+                key={m.id}
+                style={
+                  m.sender === username ? styles.msgRowSelf : styles.msgRow
+                }
+              >
+                <div style={styles.msgAuthor}>{m.sender}</div>
+                <div style={styles.msgBubble}>{m.content}</div>
+                <div style={styles.msgTime}>
+                  {new Date(m.createdAt).toLocaleTimeString()}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <form style={styles.inputRow} onSubmit={sendMessage}>
@@ -97,6 +121,14 @@ const styles = {
     border: "1px solid #e6e6e6",
     borderRadius: 8,
     overflow: "hidden",
+  },
+  systemMsg: {
+    textAlign: "center",
+    color: "#888",
+    fontSize: "19px",
+    margin: "10px 0",
+    border: "2px solid #ccc",
+    borderRadius: 6,
   },
   msgList: {
     overflowY: "auto",
