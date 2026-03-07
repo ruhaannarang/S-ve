@@ -22,6 +22,14 @@ body {
   align-items: center;
   margin-top: 50px;
 }
+.homepage{
+  background-color: #d7faff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .errorbox {
   margin-top: 20px;
   padding: 10px 20px;
@@ -75,6 +83,7 @@ body {
 }
 
 .Signuppage {
+  background-color: #d7faff;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -144,6 +153,7 @@ body {
 }
 
 .loginpage {
+  background-color: #d7faff;
   display: flex;
   justify-content: center;
   flex-direction: column;

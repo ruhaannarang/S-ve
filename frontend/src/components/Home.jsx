@@ -9,7 +9,7 @@ const Home = () => {
   console.log("User in Home component:", user?.user?.username);
   console.log("Loading state in Home component:", loading);
   return (
-    <>
+    <div className="homepage">
       <div className="homepageImg">
         <div className="front_page_Image">
           <img src={front_page_photo} alt="" />
@@ -29,7 +29,7 @@ const Home = () => {
           Login
         </a>
       </div>
-    </>
+    </div>
   );
 };
 

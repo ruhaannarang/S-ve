@@ -5,7 +5,7 @@ const Nav = () => {
   let Navigate = useNavigate();
   const { user, loading } = useAuth();
   if (!user) {
-    return <div>Loading... . If you are not redirected automatically, please refresh the page.</div>;
+    return <div>please refresh the page for best experience.</div>;
   }
   console.log(loading);
   const username = user?.user?.username;
