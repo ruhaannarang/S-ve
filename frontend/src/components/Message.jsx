@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { io } from "socket.io-client";
-
+import Nav from "./Nav";
 const socket = io("http://localhost:3000");
 
 const Message = () => {
@@ -78,7 +78,8 @@ const Message = () => {
 
   return (
     <div style={styles.app}>
-      <div style={styles.header}>Chat in Public</div>
+      <Nav />
+      <h1 style={styles.header}>Chat in Public</h1>
 
       <div style={styles.onlineBox}>
         <strong>Online Users:</strong>
@@ -138,46 +139,51 @@ const Message = () => {
 };
 const styles = {
   app: {
-    maxWidth: 820,
-    margin: "28px auto",
-    fontFamily: "Inter, Arial, sans-serif",
+    // margin: "28px auto",
+    background: "rgb(21, 25, 25)",
+    color: "#d7faff",
+    height:"100%",
+    fontFamily: "cursive",
   },
-  header: { fontSize: 20, fontWeight: 600, marginBottom: 12 },
+  header: { fontSize: "xx-large", padding: "15px 0 5px 0", fontWeight: 600, marginBottom: 12 , textAlign:"center", color: "#d7faff"},
   chatWrap: {
-    border: "1px solid #e6e6e6",
+    border: "1px solid #333",
     borderRadius: 8,
     overflow: "hidden",
+    background: "rgb(21, 25, 25)",
   },
   onlineBox: {
     padding: "10px",
-    borderBottom: "1px solid #eee",
-    background: "#fafafa",
+    borderBottom: "1px solid #333",
+    background: "rgb(21, 25, 25)",
+    color: "#d7faff",
   },
 
   userTag: {
     marginLeft: "8px",
     padding: "4px 8px",
     borderRadius: "6px",
-    background: "#e5e7eb",
+    background: "#333",
+    color: "#d7faff",
     fontSize: "12px",
   },
   systemMsg: {
     textAlign: "center",
-    color: "#888",
+    color: "#d7faff",
     fontSize: "19px",
     margin: "10px 0",
-    border: "2px solid #ccc",
+    border: "2px solid #555",
     borderRadius: 6,
   },
   msgList: {
     overflowY: "auto",
     padding: 16,
-    background: "#fafafa",
+    background: "rgb(21, 25, 25)",
     display: "flex",
     flexDirection: "column",
-    height: "75vh",
+    height: "60vh",
   },
-  empty: { color: "#666", textAlign: "center", marginTop: 60 },
+  empty: { color: "#888", textAlign: "center", marginTop: 60 },
   msgRow: {
     marginBottom: 12,
     display: "flex",
@@ -190,34 +196,37 @@ const styles = {
     flexDirection: "column",
     alignItems: "flex-end",
   },
-  msgAuthor: { fontSize: 12, color: "#666", marginBottom: 4 },
+  msgAuthor: { fontSize: 12, color: "#888", marginBottom: 4 },
   msgBubble: {
     maxWidth: "78%",
     padding: "10px 12px",
     borderRadius: 12,
-    background: "#fff",
+    background: "#333",
+    color: "#d7faff",
     boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
   },
-  msgTime: { fontSize: 11, color: "#999", marginTop: 4 },
+  msgTime: { fontSize: 11, color: "#888", marginTop: 4 },
   inputRow: {
     display: "flex",
     gap: 8,
     padding: 12,
-    borderTop: "1px solid #eee",
-    background: "#fff",
+    borderTop: "1px solid #333",
+    background: "rgb(21, 25, 25)",
   },
   input: {
     flexGrow: 1,
     padding: "8px 10px",
     borderRadius: 6,
-    border: "1px solid #ddd",
+    border: "1px solid #555",
+    background: "#333",
+    color: "#d7faff",
   },
   sendBtn: {
     padding: "8px 14px",
     borderRadius: 6,
     border: "none",
-    background: "#2563eb",
-    color: "#fff",
+    background: "#d7faff",
+    color: "rgb(21, 25, 25)",
     cursor: "pointer",
   },
 };

@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: rgb(215, 250, 255);
+  background-color: rgb(21, 25, 25);
 }
 
 .front_page_Image {
@@ -81,7 +81,15 @@ body {
   align-items: center;
   height: 100vh;
 }
-
+.navoptions{
+  margin-left: 15px;
+  display: flex;
+  gap: 20px;
+  font-size: large;
+  color: white;
+  cursor: pointer;
+  text-decoration: underline;
+}
 .inputs {
   display: flex;
   flex-direction: column;
