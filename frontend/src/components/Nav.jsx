@@ -2,6 +2,9 @@ import React from "react";
 import { useAuth } from "../context/AuthContext";
 const Nav = () => {
   const { user, loading } = useAuth();
+  if (!user) {
+    return <div>Loading...</div>;
+  }
   console.log(loading);
   const username = user?.user?.username;
   const email = user?.user?.email;

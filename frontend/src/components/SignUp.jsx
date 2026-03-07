@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import {useNavigate} from "react-router-dom";
 const SignUp = () => {
+  const [error,seterror]=useState("");
   const[credentials,setCredentials]=useState({username:"",email:"",password:""})
   let Navigate=useNavigate();
 
@@ -19,6 +20,7 @@ const SignUp = () => {
       localStorage.setItem('token',json.authtoken);
       Navigate('/feed');
     }
+    seterror(json.error);
   }
   const onChange=(e)=>{
     setCredentials({...credentials,[e.target.name]:e.target.value})
@@ -65,6 +67,7 @@ const SignUp = () => {
           <button className="registerbtn" type="submit">Register</button>
         </div>
       </form>
+      {error && <div className="errorbox">{error}</div>}
     </div>
   );
 };

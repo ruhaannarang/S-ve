@@ -66,7 +66,7 @@ const Feed = () => {
         Add Post
       </div>
       <div className="msgbtn" onClick={() => Navigate("/message")}>
-        Direct Message
+        Chat in Public
       </div>
     </div>
   );

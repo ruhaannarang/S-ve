@@ -1,7 +1,8 @@
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 const Login = () => {
+  const [error, seterror] = useState("");
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -30,7 +31,8 @@ const Login = () => {
           } else {
             console.error("No user returned from getuser:", data);
             localStorage.removeItem("token");
-            Navigate("/login");
+            
+            // Navigate("/login");
           }
         })
         .catch((error) => {
@@ -60,7 +62,10 @@ const Login = () => {
           Navigate("/feed");
         } else {
           console.error("Login failed or no token returned:", data);
-          Navigate("/login");
+          localStorage.removeItem("token");
+          seterror(data.error);
+          
+          
         }
       })
       .catch((error) => {
@@ -104,6 +109,7 @@ const Login = () => {
           </button>
         </div>
       </form>
+      {error && <div className="errorbox">{error}</div>}
     </div>
   );
 };

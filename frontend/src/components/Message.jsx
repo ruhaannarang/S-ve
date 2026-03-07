@@ -6,8 +6,12 @@ const socket = io("http://localhost:3000");
 
 const Message = () => {
   const { user } = useAuth();
-  const username = user?.user?.username || "You";
-
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+  console.log(user);
+  const username = user.user.username;
+  const [onlineUsers, setOnlineUsers] = useState([]);
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
 
@@ -19,9 +23,7 @@ const Message = () => {
     socket.on("receive-message", (message) => {
       setMessages((prev) => [...prev, message]);
     });
-    // socket.on("user-left", (user) => {
-    //   addSystemMessage(`${user} left the chat`);
-    // });
+
     socket.on("user-joined", (user) => {
       const joinMessage = {
         id: Date.now(),
@@ -32,8 +34,24 @@ const Message = () => {
 
       setMessages((prev) => [...prev, joinMessage]);
     });
+    socket.on("online-users", (users) => {
+      setOnlineUsers(users);
+    });
+    socket.on("user-left", (user) => {
+      const leaveMessage = {
+        id: Date.now(),
+        sender: "system",
+        content: `${user} left the chat`,
+        createdAt: new Date(),
+      };
+
+      setMessages((prev) => [...prev, leaveMessage]);
+    });
     return () => {
       socket.off("receive-message");
+      socket.off("user-joined");
+      socket.off("user-left");
+      socket.off("online-users");
     };
   }, [username]);
 
@@ -62,6 +80,14 @@ const Message = () => {
     <div style={styles.app}>
       <div style={styles.header}>Chat in Public</div>
 
+      <div style={styles.onlineBox}>
+        <strong>Online Users:</strong>
+        {onlineUsers.map((u, i) => (
+          <span key={i} style={styles.userTag}>
+            {u}
+          </span>
+        ))}
+      </div>
       <div style={styles.chatWrap}>
         <div style={styles.msgList} ref={listRef}>
           {messages.length === 0 && (
@@ -121,6 +147,19 @@ const styles = {
     border: "1px solid #e6e6e6",
     borderRadius: 8,
     overflow: "hidden",
+  },
+  onlineBox: {
+    padding: "10px",
+    borderBottom: "1px solid #eee",
+    background: "#fafafa",
+  },
+
+  userTag: {
+    marginLeft: "8px",
+    padding: "4px 8px",
+    borderRadius: "6px",
+    background: "#e5e7eb",
+    fontSize: "12px",
   },
   systemMsg: {
     textAlign: "center",

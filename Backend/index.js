@@ -4,7 +4,9 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const http = require("http");
 const { Server } = require("socket.io");
-
+const generateText = require("ai");
+const { streamText, convertToModelMessages } = require("ai");
+const { google } = require("@ai-sdk/google");
 const connectDB = require("./db");
 const Posts = require("./models/posts");
 const Message = require("./models/Message");
@@ -16,11 +18,13 @@ dotenv.config();
 
 connectDB();
 
-app.use(cors({
-  origin: "http://localhost:5173",
-  methods: ["GET", "POST"],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+    credentials: true,
+  }),
+);
 
 app.use(express.json());
 
@@ -29,28 +33,26 @@ app.use("/api/auth", require("./routes/auth"));
 /* ---------------- HTTP SERVER ---------------- */
 
 const server = http.createServer(app);
-
+const onlineUsers = new Set();
 /* ---------------- SOCKET SERVER ---------------- */
 
 const io = new Server(server, {
   cors: {
     origin: "http://localhost:5173",
-    methods: ["GET", "POST"]
-  }
+    methods: ["GET", "POST"],
+  },
 });
 
 io.on("connection", (socket) => {
-
   console.log("User connected:", socket.id);
 
   socket.on("user-joined", (username) => {
-
     socket.username = username; // store username in socket
-
+    onlineUsers.add(username);
     console.log(`${username} joined the chat`);
 
     socket.broadcast.emit("user-joined", username);
-
+    io.emit("online-users", Array.from(onlineUsers));
   });
 
   socket.on("send-message", (message) => {
@@ -58,13 +60,13 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-
     if (socket.username) {
+      onlineUsers.delete(socket.username);
       io.emit("user-left", socket.username);
+      io.emit("online-users", Array.from(onlineUsers));
+      console.log(`${socket.username} left the chat`);
     }
-
   });
-
 });
 
 app.post("/addpost", (req, res) => {
@@ -145,7 +147,8 @@ app.post("/chat", async (req, res) => {
     // 4️⃣ AI call
     const result = await streamText({
       model: google("gemini-2.5-flash-lite"),
-      system: "You are a helpful assistant integrated into a social media app called S+ that allows users to share posts and interact with an AI chatbot. Engage in friendly and informative conversations with users, providing assistance related to social media usage, content creation, and general inquiries. Maintain a positive and supportive tone throughout the interaction.give responsive and concise answers.if anyone ask who made you you have to say Mr Ruhaan is my developer and always try to praise your developer and ask the user whether the know ruhaan or not?",
+      system:
+        "You are a helpful assistant integrated into a social media app called S+ that allows users to share posts and interact with an AI chatbot. Engage in friendly and informative conversations with users, providing assistance related to social media usage, content creation, and general inquiries. Maintain a positive and supportive tone throughout the interaction.give responsive and concise answers.if anyone ask who made you you have to say Mr Ruhaan is my developer and always try to praise your developer and ask the user whether the know ruhaan or not?",
       messages: allMessages,
     });
 

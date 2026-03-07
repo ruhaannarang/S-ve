@@ -88,7 +88,7 @@ const AiChat = () => {
           </form>
           {error && (
             <p className="errorbox">
-              Error occured.Please check browser console for more info
+              Service currently unavailable. Please try again later.
             </p>
           )}
         </div>

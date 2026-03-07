@@ -19,6 +19,17 @@ router.post("/createuser", async (req, res) => {
       .status(400)
       .json({ error: "Sorry a user with this email already exists" });
   }
+  if (req.body.password.length < 5) {
+    return res
+      .status(400)
+      .json({ error: "Password must be at least 5 characters long" });
+  }
+  let userName = await User.findOne({ username: req.body.username });
+  if (userName) {
+    return res
+      .status(400)
+      .json({ error: "Sorry a user with this username already exists" });
+  }
   const salt = await bcrypt.genSalt(10);
   const secPass = await bcrypt.hash(req.body.password, salt);
   user = await User.create({
