@@ -30,41 +30,44 @@ const Message = () => {
 
     socket.emit("user-joined", username);
 
-    socket.on("receive-message", (message) => {
+    const handleMessage = (message) => {
       setMessages((prev) => [...prev, message]);
-    });
+    };
 
-    socket.on("user-joined", (user) => {
-      const joinMessage = {
-        id: Date.now(),
-        sender: "system",
-        content: `${user} joined the chat`,
-        createdAt: new Date(),
-      };
+    const handleJoin = (user) => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          sender: "system",
+          content: `${user} joined the chat`,
+          createdAt: new Date(),
+        },
+      ]);
+    };
 
-      setMessages((prev) => [...prev, joinMessage]);
-    });
+    const handleLeave = (user) => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          sender: "system",
+          content: `${user} left the chat`,
+          createdAt: new Date(),
+        },
+      ]);
+    };
 
-    socket.on("online-users", (users) => {
-      setOnlineUsers(users);
-    });
-
-    socket.on("user-left", (user) => {
-      const leaveMessage = {
-        id: Date.now(),
-        sender: "system",
-        content: `${user} left the chat`,
-        createdAt: new Date(),
-      };
-
-      setMessages((prev) => [...prev, leaveMessage]);
-    });
+    socket.on("receive-message", handleMessage);
+    socket.on("user-joined", handleJoin);
+    socket.on("user-left", handleLeave);
+    socket.on("online-users", setOnlineUsers);
 
     return () => {
-      socket.off("receive-message");
-      socket.off("user-joined");
-      socket.off("user-left");
-      socket.off("online-users");
+      socket.off("receive-message", handleMessage);
+      socket.off("user-joined", handleJoin);
+      socket.off("user-left", handleLeave);
+      socket.off("online-users", setOnlineUsers);
     };
   }, [username]);
 
@@ -74,7 +77,7 @@ const Message = () => {
     if (!text.trim()) return;
 
     const message = {
-      id: Date.now(),
+      id: Date.now() + Math.random(),
       sender: username,
       content: text,
       createdAt: new Date(),

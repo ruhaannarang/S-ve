@@ -53,9 +53,9 @@ const Feed = () => {
                     <p>{post.caption}</p>
                   </div>
 
-                  <div onClick={handleLike} className="like">
+                  {/* <div onClick={handleLike} className="like">
                   🤍
-                </div>
+                </div> */}
               </div>
                </div>
           ))}

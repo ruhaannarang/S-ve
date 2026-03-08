@@ -94,9 +94,10 @@ body {
   height: 100vh;
 }
 .navoptions{
-  margin-left: 15px;
+  padding: 0 0 0 15px;
   display: flex;
-  gap: 20px;
+  gap: 30px;
+  width: 100vw;
   font-size: large;
   color: white;
   cursor: pointer;
@@ -259,13 +260,16 @@ body {
 }
 .siteNamefeedpage{
   background-color: black;
+  width: 100vw;
   color: #d7faff;
   font-size: xx-large;
   font-weight: 700;
   padding: 10px 0;
+  overflow-x: hidden;
   position: sticky;
   text-align: center;
   top: 0;
+  left: 0;
   z-index: 100;
 }
 
@@ -504,6 +508,7 @@ body {
   background-color: hsla(0, 0%, 0%, 0);
   color: white;
   border: 2px solid white;
+  /* width: 100%; */
 }
 .addpost {
   padding: 15px 50px;
@@ -581,6 +586,9 @@ body {
     margin-top: 30px;
     padding: 0 10px;
 }
+.addinput{
+  width: 90vw;
+}
 .authButtons{
     flex-direction: column;
     align-items: center;
@@ -596,6 +604,9 @@ body {
   .feed {
     width: 95vw;
     padding: 10px;
+}
+.inputs{
+  width: 90vw;
 }
   .post {
     width: 90%;
@@ -621,7 +632,12 @@ body {
   font-size: xx-large;
   font-weight: 600;
 }
-
+.addpostinputs{
+  width: 90vw;
+}
+#myusername{
+  width: 100%;
+}
 .input input {
   height: 35px;
   width: 80%;
