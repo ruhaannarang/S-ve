@@ -9,8 +9,6 @@ const Feed = () => {
     Navigate("/addpost");
   };
 
-  
-
   const handleLike = (e) => {
     const likeBtn = e.target;
     const isLiked = likeBtn.textContent === "❤️";
@@ -34,6 +32,7 @@ const Feed = () => {
     };
     fetchPosts();
   }, []);
+
   return (
     <div>
       <Nav />
@@ -43,19 +42,22 @@ const Feed = () => {
         <div className="feed">
           {posts.map((post) => (
             <div className="post">
-              <div className="image">
-                <img src={post.image} alt="" />
-              </div>
-              <div className="postopts">
-                <div className="postinfo">
-                  <h3>{post.username}</h3>
-                  <p>{post.caption}</p>
+
+                <div className="image">
+                  <img src={post.image} alt="" />
                 </div>
-                <div onClick={handleLike} className="like">
+
+                <div className="postopts">
+                  <div className="postinfo">
+                    <h3>{post.username}</h3>
+                    <p>{post.caption}</p>
+                  </div>
+
+                  <div onClick={handleLike} className="like">
                   🤍
                 </div>
               </div>
-            </div>
+               </div>
           ))}
         </div>
       </div>

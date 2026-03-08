@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
@@ -9,7 +8,7 @@ const Login = () => {
   });
   let Navigate = useNavigate();
   console.log("TOKEN:", localStorage.getItem("token"));
-
+ 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -19,7 +18,6 @@ const Login = () => {
           // use the same storage key where we save the token ("token")
           "auth-token": localStorage.getItem("token"),
         },
-       
       })
         .then((response) => response.json())
         .then((data) => {
@@ -31,13 +29,12 @@ const Login = () => {
           } else {
             console.error("No user returned from getuser:", data);
             localStorage.removeItem("token");
-            
+
             // Navigate("/login");
           }
         })
         .catch((error) => {
           console.error("Failed to fetch user:", error);
-         
         });
     } else {
       Navigate("/login");
@@ -64,8 +61,6 @@ const Login = () => {
           console.error("Login failed or no token returned:", data);
           localStorage.removeItem("token");
           seterror(data.error);
-          
-          
         }
       })
       .catch((error) => {

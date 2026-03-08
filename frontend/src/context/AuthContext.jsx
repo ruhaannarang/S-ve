@@ -30,6 +30,7 @@ export const AuthProvider = ({ children }) => {
         const data = await res.json();
         console.log("User data:", data);
         setUser(data);
+        // localStorage.setItem("user", JSON.stringify(data));
       } catch (err) {
         localStorage.removeItem("token");
         setUser(null);
