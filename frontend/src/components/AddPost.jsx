@@ -55,13 +55,13 @@ const AddPost = () => {
     await Navigate("/feed");
   };
   return (
-    <div>
+    <div className="msgpage">
       <Nav />
       <div className="addpostpage">
         <form action="" onSubmit={handleSubmit}>
           <div className="addpostinputs">
             <div className="inputs">
-              <div className="input">
+              <div className="addinput">
                 <label htmlFor="username">Username</label>
                 <input
                   type="name"
@@ -72,7 +72,7 @@ const AddPost = () => {
                   readOnly
                 />
               </div>
-              <div className="input">
+              <div className="addinput">
                 <label htmlFor="caption">Caption</label>
                 <input
                   type="text"
@@ -83,7 +83,7 @@ const AddPost = () => {
                   onChange={onChange}
                 />
               </div>
-              <div className="input">
+              <div className="addinput">
                 <input
                   type="file"
                   id="image"

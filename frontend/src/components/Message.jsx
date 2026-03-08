@@ -181,7 +181,7 @@ const styles = {
     background: "rgb(21, 25, 25)",
     display: "flex",
     flexDirection: "column",
-    height: "60vh",
+    height:"55vh",
   },
   empty: { color: "#888", textAlign: "center", marginTop: 60 },
   msgRow: {

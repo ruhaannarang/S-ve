@@ -112,6 +112,15 @@ body {
   font-size: xx-large;
   font-weight: 600;
 }
+.addinput {
+  display: flex;
+  width: 30vw;
+  justify-content: space-between;
+  font-size: xx-large;
+  font-weight: 600;
+  color: white;
+  
+}
 
 .input input {
   height: 35px;
@@ -128,6 +137,29 @@ body {
   font-size: x-large;
   padding-left: 10px;
 }
+.addinput input {
+  height: 35px;
+  width: 60%;
+  font-size: x-large;
+  padding: 10px;
+  border-radius: 25px;
+  border: 2px solid black;
+
+  /* font-size: large; */
+}
+.msgpage{
+  background-color: rgb(21, 25, 25);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.addinput input::placeholder {
+  font-size: x-large;
+  padding-left: 10px;
+}
+
 
 .signup-page-heading {
   text-align: center;
@@ -468,6 +500,8 @@ body {
 }
 #myusername{
   background-color: hsla(0, 0%, 0%, 0);
+  color: white;
+  border: 2px solid white;
 }
 .addpost {
   padding: 15px 50px;
@@ -493,6 +527,8 @@ body {
 }
 #image{
   width: 100%;
+  color: white;
+  border: 2px solid white;
 }
 .addpostpage{
   display: flex;
