@@ -5,19 +5,29 @@ import Nav from "./Nav";
 const socket = io("http://localhost:3000");
 
 const Message = () => {
+  const messagesEndRef = useRef(null);
   const { user } = useAuth();
-  if (!user) {
-    return <div>Loading...</div>;
-  }
-  console.log(user);
-  const username = user.user.username;
+  const listRef = useRef(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
-
-  const listRef = useRef(null);
+  // if (!user) {
+  //   return <div>Loading...</div>;
+  // }
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  const username = user?.user?.username;
 
   useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  console.log(user);
+
+  useEffect(() => {
+    if (!username) return;
+
     socket.emit("user-joined", username);
 
     socket.on("receive-message", (message) => {
@@ -34,9 +44,11 @@ const Message = () => {
 
       setMessages((prev) => [...prev, joinMessage]);
     });
+
     socket.on("online-users", (users) => {
       setOnlineUsers(users);
     });
+
     socket.on("user-left", (user) => {
       const leaveMessage = {
         id: Date.now(),
@@ -47,6 +59,7 @@ const Message = () => {
 
       setMessages((prev) => [...prev, leaveMessage]);
     });
+
     return () => {
       socket.off("receive-message");
       socket.off("user-joined");
@@ -119,6 +132,7 @@ const Message = () => {
               </div>
             );
           })}
+          <div ref={messagesEndRef}></div>
         </div>
 
         <form style={styles.inputRow} onSubmit={sendMessage}>
@@ -142,10 +156,17 @@ const styles = {
     // margin: "28px auto",
     background: "rgb(21, 25, 25)",
     color: "#d7faff",
-    height:"100%",
+    height: "100%",
     fontFamily: "cursive",
   },
-  header: { fontSize: "xx-large", padding: "15px 0 5px 0", fontWeight: 600, marginBottom: 12 , textAlign:"center", color: "#d7faff"},
+  header: {
+    fontSize: "xx-large",
+    padding: "15px 0 5px 0",
+    fontWeight: 600,
+    marginBottom: 12,
+    textAlign: "center",
+    color: "#d7faff",
+  },
   chatWrap: {
     border: "1px solid #333",
     borderRadius: 8,
@@ -181,7 +202,7 @@ const styles = {
     background: "rgb(21, 25, 25)",
     display: "flex",
     flexDirection: "column",
-    height:"55vh",
+    height: "55vh",
   },
   empty: { color: "#888", textAlign: "center", marginTop: 60 },
   msgRow: {

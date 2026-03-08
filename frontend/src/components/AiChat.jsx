@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useRef,useEffect } from "react";
 import Nav from "./Nav";
 import { useAuth } from "../context/AuthContext";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 const ENDPOINT = "http://localhost:3000/chat";
 const AiChat = () => {
+  const messagesEndRef = useRef(null);
   const { user, loading } = useAuth();
   console.log(loading);
   const username = user?.user?.username;
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
   useEffect(() => {
     const createChat = async () => {
       const res = await fetch("http://localhost:3000/new-chat", {
@@ -24,7 +28,6 @@ const AiChat = () => {
       createChat();
     }
   }, []);
-
   const { messages, sendMessage, error, status } = useChat({
     transport: new DefaultChatTransport({
       api: ENDPOINT,
@@ -38,6 +41,9 @@ const AiChat = () => {
       },
     }),
   });
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
   return (
     <div className="chatappbody">
       <Nav />
@@ -66,6 +72,7 @@ const AiChat = () => {
                 </p>
               </div>
             ))}
+            <div ref={messagesEndRef}></div>
           </div>
           <form
             onSubmit={(e) => {
@@ -74,6 +81,7 @@ const AiChat = () => {
                 text: e.currentTarget["input-prompt"].value,
                 role: "user",
               });
+              e.currentTarget.reset();
             }}
             className="inputform"
           >

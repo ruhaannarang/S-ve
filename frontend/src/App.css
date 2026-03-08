@@ -37,7 +37,10 @@ body {
   color: red;
   font-size: large;
   border-radius: 15px;
+  width: 100vw;
   text-align: center;
+  z-index: 1000;
+  position: fixed;
 
 }
 .siteName {
@@ -159,7 +162,6 @@ body {
   font-size: x-large;
   padding-left: 10px;
 }
-
 
 .signup-page-heading {
   text-align: center;
