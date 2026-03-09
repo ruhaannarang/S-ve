@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        const res = await fetch("http://localhost:3000/api/auth/getuser", {
+        const res = await fetch("https://s-ve.onrender.com/api/auth/getuser", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

@@ -12,7 +12,7 @@ const Login = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      fetch("http://localhost:3000/api/auth/getuser", {
+      fetch("https://s-ve.onrender.com/api/auth/getuser", {
         method: "GET",
         headers: {
           // use the same storage key where we save the token ("token")
@@ -43,7 +43,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3000/api/auth/login", {
+    fetch("https://s-ve.onrender.com/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

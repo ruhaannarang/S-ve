@@ -3,7 +3,7 @@ import Nav from "./Nav";
 import { useAuth } from "../context/AuthContext";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
-const ENDPOINT = "http://localhost:3000/chat";
+const ENDPOINT = "https://s-ve.onrender.com/chat";
 const AiChat = () => {
   const messagesEndRef = useRef(null);
   const { user, loading } = useAuth();
@@ -14,7 +14,7 @@ const AiChat = () => {
   };
   useEffect(() => {
     const createChat = async () => {
-      const res = await fetch("http://localhost:3000/new-chat", {
+      const res = await fetch("https://s-ve.onrender.com/new-chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: user?.user?._id }),

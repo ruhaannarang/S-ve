@@ -40,7 +40,7 @@ const AddPost = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(credentials);
-    const res = await fetch("http://localhost:3000/addpost", {
+    const res = await fetch("https://s-ve.onrender.com/addpost", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

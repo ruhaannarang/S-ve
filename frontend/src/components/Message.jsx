@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { io } from "socket.io-client";
 import Nav from "./Nav";
-const socket = io("http://localhost:3000");
+const socket = io("https://s-ve.onrender.com");
 
 const Message = () => {
   const messagesEndRef = useRef(null);
