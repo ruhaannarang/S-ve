@@ -189,6 +189,13 @@ app.post("/new-chat", async (req, res) => {
 
   res.json(chat);
 });
+const path = require("path");
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
 const port = 3000;
 server.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
