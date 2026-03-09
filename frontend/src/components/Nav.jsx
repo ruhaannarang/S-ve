@@ -5,7 +5,7 @@ const Nav = () => {
   let Navigate = useNavigate();
   const { user, loading } = useAuth();
   if (!user) {
-    return <div>please refresh the page for best experience.</div>;
+    return <div className="naverror">please refresh the page for best experience.</div>;
   }
   console.log(loading);
   const username = user?.user?.username;

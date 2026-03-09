@@ -564,6 +564,9 @@ body {
   z-index: 100;
   border: 3px solid #f83dba;
 }
+.naverror{
+  color: white;
+}
 .chatbotbtn:hover {
   transform: scale(1.1);
   transition-duration: 0.2s;
