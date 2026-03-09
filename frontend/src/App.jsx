@@ -1,7 +1,7 @@
 import './App.css'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom';
 import Home from './components/Home';
-import Message from './components/message';
+import Message from './components/Message';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Feed from './components/Feed';
