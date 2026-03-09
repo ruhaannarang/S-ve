@@ -6,7 +6,7 @@ var jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 // const expressjson = require("express.json");
-const User = require("../models/User");
+const User = require("../models/user");
 // app.use(cors());
 const JWT_SECRET = process.env.JWT_SECRET;
 var fetchuser = require("../middleware/fetchuser");
