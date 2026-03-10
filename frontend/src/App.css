@@ -459,7 +459,7 @@ body {
 }
 .inputform{
   position: fixed;
-  bottom: 0;
+  bottom: 10px;
   width: 100%;
   background-color: rgb(21, 25, 25);
   padding: 10px 0;

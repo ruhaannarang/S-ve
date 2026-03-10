@@ -209,7 +209,7 @@ const styles = {
     background: "rgb(21, 25, 25)",
     display: "flex",
     flexDirection: "column",
-    height: "55vh",
+    height: "50vh",
   },
   empty: { color: "#888", textAlign: "center", marginTop: 60 },
   msgRow: {
