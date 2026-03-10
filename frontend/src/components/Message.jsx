@@ -46,7 +46,7 @@ const Message = () => {
     };
 
     const handleLeave = (user) => {
-      if (!username) {
+    if (username) {
       return;
     }
       setMessages((prev) => [
