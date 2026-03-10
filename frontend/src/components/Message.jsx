@@ -26,8 +26,7 @@ const Message = () => {
   console.log(user);
 
   useEffect(() => {
-    if (!username) return;
-
+    
     socket.emit("user-joined", username);
 
     const handleMessage = (message) => {
@@ -47,6 +46,9 @@ const Message = () => {
     };
 
     const handleLeave = (user) => {
+      if (!username) {
+      return;
+    }
       setMessages((prev) => [
         ...prev,
         {
