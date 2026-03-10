@@ -645,6 +645,20 @@ body {
 #myusername{
   width: 100%;
 }
+.navoptions {
+    padding: 10px 0 10px 15px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100vw;
+    font-size: large;
+    position: fixed;
+    bottom: 0;
+    background: black;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: underline;
+}
 .input input {
   height: 35px;
   width: 80%;
@@ -654,5 +668,14 @@ body {
   border: 2px solid black;
 
   /* font-size: large; */
+}
+.msgbtn{
+  display: none;
+}
+.chatbotbtn{
+  display: none;
+}
+.addpostbtn{
+  bottom: 55px;
 }
 }
