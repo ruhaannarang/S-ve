@@ -95,7 +95,7 @@ body {
   height: 100vh;
 }
 .navoptions{
-  padding: 0 0 0 15px;
+  padding: 5px 0 5px 15px;
   display: flex;
   gap: 30px;
   width: 100vw;
