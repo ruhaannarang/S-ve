@@ -29,7 +29,10 @@ const Message = () => {
     
     socket.emit("user-joined", username);
 
-    const handleMessage = (message) => {
+    const handleMessage = (message,user) => {
+      if (username===user) {
+      return;
+    }
       setMessages((prev) => [...prev, message]);
     };
 
@@ -46,9 +49,7 @@ const Message = () => {
     };
 
     const handleLeave = (user) => {
-    if (username) {
-      return;
-    }
+    
       setMessages((prev) => [
         ...prev,
         {
