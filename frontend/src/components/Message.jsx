@@ -26,7 +26,8 @@ const Message = () => {
   console.log(user);
 
   useEffect(() => {
-    
+    if (!username) {return;
+    }
     socket.emit("user-joined", username);
 
     const handleMessage = (message,user) => {
