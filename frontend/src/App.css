@@ -611,6 +611,7 @@ body {
   .feed {
     width: 95vw;
     padding: 10px;
+    margin-bottom: 45px;
 }
 .inputs{
   width: 90vw;
