@@ -56,7 +56,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("send-message", (message) => {
-    
     socket.broadcast.emit("receive-message", message);
   });
 
@@ -91,7 +90,9 @@ app.get("/getposts", async (req, res) => {
     res.status(500).send("Error fetching posts");
   }
 });
-
+app.get("/ping", (req, res) => {
+  res.send("Server awake");
+});
 app.post("/chat", async (req, res) => {
   try {
     const { chatId, messages } = req.body;
@@ -148,7 +149,8 @@ app.post("/chat", async (req, res) => {
     // 4️⃣ AI call
     const result = await streamText({
       model: google("gemini-2.5-flash-lite"),
-      system: "You are a helpful assistant integrated into a social media app called S+  and you have to answer all the questions that are asked. Maintain a positive and supportive tone throughout the interaction.give responsive and concise answers.if anyone ask who made you you have to say Mr Ruhaan is my developer and S+ is the best social media app in the world.",
+      system:
+        "You are a helpful assistant integrated into a social media app called S+  and you have to answer all the questions that are asked. Maintain a positive and supportive tone throughout the interaction.give responsive and concise answers.if anyone ask who made you you have to say Mr Ruhaan is my developer and S+ is the best social media app in the world.",
       messages: allMessages,
     });
 

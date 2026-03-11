@@ -56,7 +56,6 @@ const AddPost = () => {
   };
   return (
     <div className="msgpage">
-      <Nav />
       <div className="addpostpage">
         <form action="" onSubmit={handleSubmit}>
           <div className="addpostinputs">
