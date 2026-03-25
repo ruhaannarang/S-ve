@@ -9,23 +9,15 @@ const Feed = () => {
     Navigate("/addpost");
   };
 
-  // const handleLike = (e) => {
-  //   const likeBtn = e.target;
-  //   const isLiked = likeBtn.textContent === "❤️";
-  //   if (isLiked) {
-  //     likeBtn.textContent = "🤍";
-  //     localStorage.removeItem("liked");
-  //     return;
-  //   }
-  //   likeBtn.textContent = "❤️";
-  //   localStorage.setItem("liked", "true");
-  // };
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await fetch("https://s-ve.onrender.com/getposts");
         const data = await response.json();
         setPosts(data);
+
+        
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
@@ -36,7 +28,6 @@ const Feed = () => {
   return (
     <div>
       <Nav />
-
       <div className="feedpage">Feed</div>
       <div className="feedsec">
         <div className="feed">
