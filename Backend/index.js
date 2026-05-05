@@ -27,6 +27,9 @@ app.use(
 );
 
 app.use(express.json());
+// app.get("/ping", (req, res) => {
+//   res.send("Server awake");
+// });
 
 app.use("/api/auth", require("./routes/auth"));
 
@@ -89,9 +92,6 @@ app.get("/getposts", async (req, res) => {
     console.error(error);
     res.status(500).send("Error fetching posts");
   }
-});
-app.get("/ping", (req, res) => {
-  res.send("Server awake");
 });
 app.post("/chat", async (req, res) => {
   try {
