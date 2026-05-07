@@ -27,9 +27,9 @@ app.use(
 );
 
 app.use(express.json());
-// app.get("/ping", (req, res) => {
-//   res.send("Server awake");
-// });
+app.get("/ping", (req, res) => {
+  res.send("Server awake");
+});
 
 app.use("/api/auth", require("./routes/auth"));
 
